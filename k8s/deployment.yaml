@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productclass
+spec:
+  replicas: 2 # the number of container instance
+  selector:
+    matchLabels:
+      app: productclassifier
+  template:
+    metadata:
+      labels:
+        app: productclassifier
+    spec:
+      containers:
+      - name: wine-quality-predictor-app
+        image: gcr.io/jchen9314-project/winequalityclassifier-webapp:v1
+        ports:
+        - containerPort: 8501 # default port for streamlit app
